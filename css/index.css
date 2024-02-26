@@ -463,7 +463,7 @@ main {
             .pic {
                 position: absolute;
                 inset: 0 25% 60% 0;
-                margin-top: 8rem;
+                margin-top: 7rem;
 
                 & img {
                     height: 100%;
@@ -1051,13 +1051,11 @@ main {
                     height: 6rem;
                     position: absolute;
                     left: 0.5rem;
-                    transform: rotate(0deg);
                     transition: 1s ease;
                 }
 
                 & img.active {
                     left: 12rem;
-                    transform: rotate(360deg);
                 }
 
                 & p {
@@ -1178,7 +1176,6 @@ main {
                         height: 3rem;
                         left: auto;
                         top: 0.2rem;
-                        transform: rotate(0deg);
                         transition: 0.5s ease;
                     }
 
@@ -1353,6 +1350,7 @@ main {
             flex-direction: column;
             align-items: center;
             max-width: 1000px;
+            margin-bottom: 10rem;
 
             & p {
                 text-align: justify;
