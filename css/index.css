@@ -555,6 +555,7 @@ main {
                 }
 
                 & p {
+                    font-size: 1.08rem;
                     text-align: justify;
                     overflow: hidden;
                     position: relative;
@@ -603,6 +604,10 @@ main {
 
                 @media (min-width: 1000px) {
                     inset: 20% 0 10% 40%;
+
+                    & p {
+                        font-size: 0.8rem;
+                    }
                 }
 
                 @media (min-width: 1000px) and (min-height: 1000px) {
@@ -968,6 +973,12 @@ main {
                 justify-content: center;
                 position: relative;
 
+                & p {
+                    position: absolute;
+                    top: 0.2rem;
+                    font-weight: 500;
+                }
+
                 & progress {
                     width: 80%;
                     max-width: 500px;
@@ -997,12 +1008,6 @@ main {
         
                 & progress::-moz-progress-bar {
                     background-color: var(--backColor10);
-                }
-
-                & p {
-                    position: absolute;
-                    top: 0.2rem;
-                    font-weight: 500;
                 }
             }
 
