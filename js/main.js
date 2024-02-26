@@ -1,6 +1,5 @@
 // window.location.reload();
 window.onload = () => {
-    reloadPage();
     switchTab();
     navToggle();
     infoDescription();
@@ -13,8 +12,24 @@ window.onload = () => {
     scrollHandle();
 }
 
-function reloadPage() {
-    document.querySelector("header").scrollIntoView(true);
+window.addEventListener("beforeunload", () => {
+    scrollToCover();
+});
+
+function scrollToCover() {
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    header.style.height = "100%";
+    main.style.height = "0%";
+    header.scrollIntoView({behavior: "smooth"});
+}
+
+function scrollToMain() {
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    header.style.height = "0%";
+    main.style.height = "100%";
+    main.scrollIntoView({behavior: "smooth"});
 }
 
 function switchTab() {
@@ -34,6 +49,7 @@ function switchTab() {
             }
             relatedTabN.parentNode.classList.add("active");
             switchContentPage(page_id);
+            scrollToMain();
 
             const sections = document.querySelectorAll("section");
             sections.forEach(function(section) {
@@ -67,7 +83,6 @@ function switchContentPage(page_id) {
     }
 
 	nextPage.classList.add("active");
-    nextPage.scrollIntoView({behavior: "smooth"});
 }
 
 function navToggle() {
@@ -104,7 +119,7 @@ function isInViewport(element) {
 
     var visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
 
-    return visibleHeight >= 0.8 * element.offsetHeight;
+    return visibleHeight >= 1 * element.offsetHeight;
 }
 
 function scrollEnter(infoArticle) {
@@ -184,6 +199,7 @@ function buttons() {
     const backStart1 = document.getElementById("backStart1");
     const backStart2 = document.getElementById("backStart2");
     const afterSend = document.querySelector(".afterSend");
+    const tabN_switchers = document.querySelectorAll("a[data-switcher]");
 
     tryAgain.addEventListener("click", () => {
         resetQuiz();
@@ -191,12 +207,18 @@ function buttons() {
     });
 
     backStart1.addEventListener("click", () => {
-        document.querySelector("header").scrollIntoView(true);
+        scrollToCover();
+        tabN_switchers.forEach(function(node) {
+            node.parentNode.classList.remove("active");
+        });
     });
 
     backStart2.addEventListener("click", () => {
-        document.querySelector("header").scrollIntoView(true);
+        scrollToCover();
         afterSend.style.height = "0";
+        tabN_switchers.forEach(function(node) {
+            node.parentNode.classList.remove("active");
+        });
     });
 }
 
